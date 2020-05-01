@@ -1,5 +1,4 @@
-﻿using System;
-using Domain;
+﻿using Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
@@ -11,7 +10,9 @@ namespace Persistence
             
         }
 
+        //need to run dotnet ef migrations add "name" -[ Persistence/ -s API/
        public DbSet<Value> Values { get; set; }
+       public DbSet<Activity> Activities{get; set;}
 
        protected override void OnModelCreating(ModelBuilder builder)
        {
