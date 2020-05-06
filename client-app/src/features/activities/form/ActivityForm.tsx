@@ -1,5 +1,5 @@
 import React, { useState, FormEvent, useContext, useEffect } from "react";
-import { Segment, Form, Button } from "semantic-ui-react";
+import { Segment, Form, Button, Grid } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import { IActivity } from "../../../app/models/activity";
 import { v4 as uuid } from "uuid";
@@ -42,7 +42,13 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
     return () => {
       clearActivity();
     };
-  }, [loadActivity, clearActivity, match.params.id, initialFormState, activity.id.length]);
+  }, [
+    loadActivity,
+    clearActivity,
+    match.params.id,
+    initialFormState,
+    activity.id.length,
+  ]);
 
   const handleSubmit = () => {
     if (activity.id.length === 0) {
@@ -68,61 +74,65 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
   };
 
   return (
-    <Segment clearing>
-      <Form onSubmit={handleSubmit}>
-        <Form.Input
-          placeholder="Title"
-          value={activity.title}
-          name="title"
-          onChange={handleInputChange}
-        />
-        <Form.TextArea
-          rows={2}
-          placeholder="Description"
-          value={activity.description}
-          name="description"
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="Category"
-          value={activity.category}
-          name="category"
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          type="datetime-local"
-          placeholder="Date"
-          value={activity.date}
-          name="date"
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="City"
-          value={activity.city}
-          name="city"
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="Venue"
-          value={activity.venue}
-          name="venue"
-          onChange={handleInputChange}
-        />
-        <Button
-          loading={submitting}
-          floated="right"
-          positive
-          type="submit"
-          content="Submit"
-        />
-        <Button
-          floated="right"
-          type="button"
-          content="Cancel"
-          onClick={() => history.push('/activities')}
-        />
-      </Form>
-    </Segment>
+    <Grid>
+      <Grid.Column width={10}>
+        <Segment clearing>
+          <Form onSubmit={handleSubmit}>
+            <Form.Input
+              placeholder="Title"
+              value={activity.title}
+              name="title"
+              onChange={handleInputChange}
+            />
+            <Form.TextArea
+              rows={2}
+              placeholder="Description"
+              value={activity.description}
+              name="description"
+              onChange={handleInputChange}
+            />
+            <Form.Input
+              placeholder="Category"
+              value={activity.category}
+              name="category"
+              onChange={handleInputChange}
+            />
+            <Form.Input
+              type="datetime-local"
+              placeholder="Date"
+              value={activity.date}
+              name="date"
+              onChange={handleInputChange}
+            />
+            <Form.Input
+              placeholder="City"
+              value={activity.city}
+              name="city"
+              onChange={handleInputChange}
+            />
+            <Form.Input
+              placeholder="Venue"
+              value={activity.venue}
+              name="venue"
+              onChange={handleInputChange}
+            />
+            <Button
+              loading={submitting}
+              floated="right"
+              positive
+              type="submit"
+              content="Submit"
+            />
+            <Button
+              floated="right"
+              type="button"
+              content="Cancel"
+              onClick={() => history.push("/activities")}
+            />
+          </Form>
+        </Segment>
+      </Grid.Column>
+    </Grid>
   );
 };
 
