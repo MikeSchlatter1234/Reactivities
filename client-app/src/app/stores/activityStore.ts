@@ -43,7 +43,6 @@ class ActivityStore {
         });
         this.loadingInitial = false;
       });
-      console.log(this.groupActivitiesByDate(activities));
     } catch (error) {
       runInAction("loading activity errors", () => {
         this.loadingInitial = false;
@@ -54,16 +53,19 @@ class ActivityStore {
 
   @action loadActivity = async (id: string) => {
     let activity = this.getActivity(id);
+    // console.log("get activity");
+    // console.log(activity);
     if (activity) {
       console.log(activity);
       this.activity = activity;
     } else {
       this.loadingInitial = true;
-      console.log("need to get activity");
       try {
         activity = await agent.Activities.details(id);
         runInAction("loading activity detail", () => {
-          activity.date = activity.date.split(".")[0];
+          if (activity) {
+            activity.date = activity.date.split(".")[0];
+          }
           this.activity = activity;
           this.loadingInitial = false;
         });
@@ -71,7 +73,7 @@ class ActivityStore {
         runInAction("loading activity error", () => {
           this.loadingInitial = false;
         });
-        console.log(error);
+        throw error;
       }
     }
   };
