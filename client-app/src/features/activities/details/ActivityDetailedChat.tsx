@@ -5,7 +5,7 @@ import { Form as FinalForm, Field } from "react-final-form";
 import { Link } from "react-router-dom";
 import TextAreaInput from "../../../app/common/form/TextAreaInput";
 import { observer } from "mobx-react-lite";
-import { format, formatDistance } from "date-fns";
+import {  formatDistance } from "date-fns";
 
 const ActivityDetailedChat = () => {
   const rootStore = useContext(RootStoreContext);
@@ -21,7 +21,7 @@ const ActivityDetailedChat = () => {
     return () => {
       stopHubConnection();
     };
-  }, [createHubConnection, stopHubConnection]);
+  }, [createHubConnection, stopHubConnection, activity]);
 
   return (
     <Fragment>
@@ -44,7 +44,7 @@ const ActivityDetailedChat = () => {
                 <Comment.Content>
                   <Comment.Author as={Link} to={`/profile/${comment.username}`}>{comment.displayName}</Comment.Author>
                   <Comment.Metadata>
-            <div>{ formatDistance(comment.createdAt, new Date)}</div>
+            <div>{ formatDistance(comment.createdAt, new Date())}</div>
                   </Comment.Metadata>
                   <Comment.Text>{comment.body}</Comment.Text>
                 </Comment.Content>
