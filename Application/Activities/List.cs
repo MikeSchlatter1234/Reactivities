@@ -30,14 +30,13 @@ namespace Application.Activities
                 IsGoing = isGoing;
                 IsHost = isHost;
                 StartDate = startDate ?? DateTime.Now;
-
             }
             public int? Limit { get; set; }
             public int? Offset { get; set; }
 
             public bool IsGoing { get; set; }
             public bool IsHost { get; set; }
-            public DateTime? StartDate { get; set; }
+            public DateTime StartDate { get; set; }
 
         }
 
@@ -59,7 +58,7 @@ namespace Application.Activities
                                                      CancellationToken cancellationToken)
             {
                 var queryable = _context.Activities
-                    .Where(x => x.Date >= request.StartDate)
+                    .Where(x => x.Date >= request.StartDate )
                     .OrderBy(x => x.Date)
                     .AsQueryable();
 

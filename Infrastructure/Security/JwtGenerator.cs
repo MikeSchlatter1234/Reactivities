@@ -30,7 +30,7 @@ namespace Infrastructure.Security
            var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
            var tokenDescriptor = new SecurityTokenDescriptor{
               Subject = new ClaimsIdentity(claims),
-              Expires = DateTime.Now.AddDays(7),
+              Expires = DateTime.UtcNow.AddHours(8),
               SigningCredentials = creds
            };
 

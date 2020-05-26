@@ -1,9 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Segment, Form, Button, Grid } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
-import {
-  ActivityFormValues,
-} from "../../../app/models/activity";
+import {ActivityFormValues} from "../../../app/models/activity";
 import { v4 as uuid } from "uuid";
 import { RouteComponentProps } from "react-router-dom";
 import { Form as FinalForm, Field } from "react-final-form";

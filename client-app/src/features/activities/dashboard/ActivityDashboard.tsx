@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Grid, Loader } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import ActivityList from "./ActivityList";
-import { LoadingComponent } from "../../../app/layout/LoadingComponent";
+import ActivityListItemPlaceholder from "./ActivityListItemPlaceholder";
 import { RootStoreContext } from "../../../app/stores/rootStore";
 import InfiniteScroll from "react-infinite-scroller";
 import ActivityFilters from "./ActivityFilters";
@@ -28,20 +28,21 @@ const ActivityDashboard: React.FC = () => {
     loadActivities();
   }, [loadActivities]);
 
-  if (loadingInitial && page === 0)
-    return <LoadingComponent content="Loading Activities..." />;
-
   return (
     <Grid>
       <Grid.Column width={10}>
-        <InfiniteScroll
-          pageStart={0}
-          loadMore={handleGetNext}
-          hasMore={!loadingNext && page + 1 < totalPages}
-          initialLoad
-        >
-          <ActivityList />
-        </InfiniteScroll>
+        {loadingInitial && page === 0 ? (
+          <ActivityListItemPlaceholder />
+        ) : (
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={handleGetNext}
+            hasMore={!loadingNext && page + 1 < totalPages}
+            initialLoad
+          >
+            <ActivityList />
+          </InfiniteScroll>
+        )}
       </Grid.Column>
       <Grid.Column width={6}>
         <ActivityFilters />

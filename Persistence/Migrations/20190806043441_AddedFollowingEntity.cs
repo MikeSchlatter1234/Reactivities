@@ -2,7 +2,7 @@
 
 namespace Persistence.Migrations
 {
-    public partial class AddFollowingEntity : Migration
+    public partial class AddedFollowingEntity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

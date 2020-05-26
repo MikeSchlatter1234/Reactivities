@@ -6,10 +6,13 @@ export const combineDateAndTime = (date: Date, time: Date) => {
 
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
-  const day = date.getDate(); //  getDate = day of month    getDay = day of week
+  const day = date.getDate(); 
   const dateString = `${year}-${month}-${day}`;
-
-  return new Date(dateString + " " + timeString);
+  console.log(dateString)
+  console.log(timeString)
+  // const dateString = date.toISOString().split('T')[0];
+  // const timeString = time.toISOString().split('T')[1];
+  return new Date(dateString + ' ' + timeString);
 };
 
 export const setActivityProps = (activity: IActivity, user: IUser) => {
